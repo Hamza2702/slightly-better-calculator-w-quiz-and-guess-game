@@ -703,6 +703,228 @@ namespace Calculator_test
 
         static void Quiz()
         {
+            Console.Clear();
+
+            int num1 = 0, num2 = 0, ans = 0, x = 0, userAns = 0, y = 0, count = 0;
+
+            string[] operators = { "+", "-", "*", "/" };
+
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            string myText = "  ____        _     \r\n / __ \\      (_)    \r\n| |  | |_   _ _ ____\r\n| |  | | | | | |_  /\r\n| |__| | |_| | |/ / \r\n \\___\\_\\\\__,_|_/___|\r\n\n";
+
+            for (int i = 0; i < myText.Length; i++)
+            {
+                Console.Write(myText[i]);
+                System.Threading.
+                    Thread.Sleep(1);
+            }
+
+            Console.ResetColor();
+
+            Console.WriteLine("Welcome to the Quiz part of the program.\nYou will be given 10 mathematical questions, answer them correctly to get a high score.");
+
+            Restart:
+
+            Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            string myText2 = "  ____        _     \r\n / __ \\      (_)    \r\n| |  | |_   _ _ ____\r\n| |  | | | | | |_  /\r\n| |__| | |_| | |/ / \r\n \\___\\_\\\\__,_|_/___|\r\n\n";
+
+            Console.WriteLine(myText2);
+            Console.ResetColor();
+
+            Console.WriteLine("Welcome to the Quiz part of the program.\nYou will be given 10 mathematical questions, answer them correctly to get a high score.\n");
+
+
+
+            Console.ResetColor();
+
+            Random rand = new Random();
+            int index = rand.Next(operators.Length);
+            string correct = operators[index];
+
+            if (x == 10)
+            {
+                goto Ending;
+            }
+
+            do
+            {
+                switch (correct)
+                {
+                    case "+":
+
+                        while (x <= 9)
+                        {
+                            num1 = rand.Next(101);
+                            num2 = rand.Next(101);
+                            ans = num1 + num2;
+                            Console.WriteLine($"{num1} + {num2} =");
+
+                            if (int.TryParse(Console.ReadLine(), out userAns))
+                            {
+                                break;
+
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("Try entering a number.\n");
+                            }
+
+                            if (userAns == ans)
+                            {
+                                count += 1;
+                                x += 1;
+                                goto Restart;
+                            }
+                            else if (userAns != ans)
+                            {
+                                x += 1;
+                                goto Restart;
+                            }
+                        }
+                        Console.ReadLine();
+                        return;
+                    case "-":
+                        while (x <= 9)
+                        {
+                            num1 = rand.Next(101);
+                            num2 = rand.Next(101);
+
+                            while (num2 > num1)
+                            {
+                                num2 = rand.Next(101);
+                            }
+
+                            ans = num1 - num2;
+                            Console.WriteLine($"{num1} - {num2} =");
+
+                            if (int.TryParse(Console.ReadLine(), out userAns))
+                            {
+                                break;
+
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("Try entering a number.\n");
+                            }
+
+                            if (userAns == ans)
+                            {
+                                count += 1;
+                                x += 1;
+                                goto Restart;
+                            }
+                            else if (userAns != ans)
+                            {
+                                x += 1;
+                                goto Restart;
+                            }
+                        }
+                        return;
+                    case "*":
+                        while (x <= 9)
+                        {
+                            num1 = rand.Next(101);
+                            num2 = rand.Next(101);
+                            ans = num1 * num2;
+                            Console.WriteLine($"{num1} * {num2} =");
+
+                            if (int.TryParse(Console.ReadLine(), out userAns))
+                            {
+                                break;
+
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("Try entering a number.\n");
+                            }
+
+                            if (userAns == ans)
+                            {
+                                count += 1;
+                                x += 1;
+                                goto Restart;
+                            }
+                            else if (userAns != ans)
+                            {
+                                x += 1;
+                                goto Restart;
+                            }
+                        }
+                        return;
+                    case "/":
+                        while (x <= 9)
+                        {
+                        Not:
+                            decimal d = rand.Next(145);
+                            decimal e = rand.Next(1, 12);
+                            decimal ans1 = 0;
+
+                            if (d % e == 0)
+                            {
+                            }
+                            else
+                            {
+                                goto Not;
+                            }
+
+                            ans1 = d / e;
+
+                            Console.WriteLine($"{d} / {e} =");
+
+                            if (int.TryParse(Console.ReadLine(), out userAns))
+                            {
+                                break;
+
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("Try entering a number.\n");
+
+                                // FIX ( let user type another number )
+                                // THIS
+
+                                Console.ReadLine();
+                            }
+
+                            if (userAns == ans1)
+                            {
+                                count += 1;
+                                x += 1;
+                                goto Restart;
+                            }
+                            else if (userAns != ans1)
+                            {
+                                x += 1;
+                                goto Restart;
+                            }
+                        }
+                        return;
+                }
+            } while (y == 6);
+
+            Ending:
+
+            if (count <= 3)
+            {
+                Console.WriteLine($"Keep practising! You got {count}/10.");
+            }
+            else if (count == 0)
+            {
+                Console.WriteLine("Unlucky. Keep practising to get better!");
+            }
+            else if (count >= 5)
+            {
+                Console.WriteLine($"Amazing! You got {count}/10.");
+            }
+
+            Console.ReadLine();
 
         }
 
